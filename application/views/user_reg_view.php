@@ -1,5 +1,5 @@
 <div>
-    <form id="contactForm" method="post" class="form-horizontal" action="<?=site_url('albums/user_reg');?>">
+    <form id="contactForm" method="post" class="form-horizontal" action="<?=site_url('registration/user_reg');?>">
         <div class="form-group">
             <label class="col-md-3 control-label">First Name</label>
             <div class="col-md-6">
@@ -41,9 +41,9 @@
         <div class="form-group">
             <div class="col-md-9 col-md-offset-3">
                 <div id="messages"></div>
+                <?php echo '<div class=error>'.validation_errors().'</div>'; ?>
             </div>
         </div>
-        <?php echo '<div class=error>'.validation_errors().'</div>'; ?>
         <div class="form-group">
             <div class="col-md-9 col-md-offset-3">
                 <button type="submit" class="btn btn-default">Register</button>

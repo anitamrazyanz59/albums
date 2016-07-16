@@ -7,12 +7,15 @@ class Registration extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('registration_model');
+        $this->load->model('album_model');
+        $this->load->library('session');
     }
 
     public function user_reg() {
-
+        $this->load->helper('string');
         $this->load->helper(array('form'));
         $this->load->library('form_validation');
+
 
         $rules = $this->registration_model->set_rules_for_reg();
         $this->form_validation->set_rules($rules);
@@ -25,11 +28,40 @@ class Registration extends CI_Controller {
                 'email'            => $this->input->post('email'),
                 'login'            => $this->input->post('login'),
                 'password'         => $this->input->post('password'),
-                'password_confirm' => $this->input->post('password_confirm')
+                'verification_key' => random_string('alnum', 50)
+
             );
-            $this->products_model->add_user_and_order($user_data);
-            redirect('registration/user_reg', 'refresh');
+            $verification_key['key'] = $this->registration_model->user_reg($user_data);
+            $this->view_load->view('activate_view',$verification_key);
         }
 
     }
+
+    public function validate_email($key){
+        $key = trim($key);
+        $verification_key = $this->session->userdata('verification_key');
+var_dump($key);
+        if($key == $verification_key){
+
+            $this->view_load->view('home_page_view');
+        } else {
+            echo 'validation error';
+        }
+
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

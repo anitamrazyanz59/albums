@@ -39,10 +39,6 @@ $(document).ready(function() {
                     stringLength: {
                         max: 100,
                         message: 'The login must be less than 100 characters long'
-                    },
-                    stringLength: {
-                        min: 6,
-                        message: 'The login must be more than 6 characters long'
                     }
                 }
             },
@@ -60,10 +56,6 @@ $(document).ready(function() {
                         max: 100,
                         message: 'The password must be less than 100 characters long'
                     },
-                    stringLength: {
-                        min: 6,
-                        message: 'The password must be more than 6 characters long'
-                    }
                 }
             },
 
@@ -80,10 +72,6 @@ $(document).ready(function() {
                         max: 100,
                         message: 'The password confirm must be less than 100 characters long'
                     },
-                    stringLength: {
-                        min: 6,
-                        message: 'The password confirm must be more than 6 characters long'
-                    }
                 }
             },
         }

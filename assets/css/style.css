@@ -13,3 +13,6 @@ body{
     background-repeat: no-repeat;
     background: url("../../assets/img/header_background.png");
 }
+.error{
+    color: red;
+}
