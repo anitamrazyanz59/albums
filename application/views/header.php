@@ -13,11 +13,13 @@
 
 <div class="container">
     <div class="jumbotron background">
-        <a href="<?php echo site_url('registration/user_reg'); ?>">Registration</a>
+
 
         <?php if($this->session->userdata('user_id') == ''){?>
-            <a href="<?php echo site_url('registration/log_in'); ?>">log in</a>
+            <a class="link_class" href="<?php echo site_url('registration/user_reg'); ?>">Sign up</a>
+            <a class="link_class" href="<?php echo site_url('registration/log_in'); ?>">log in</a>
             <?php }else {?>
-        <a href="<?php echo site_url('registration/log_out'); ?>">log out</a>
+            <a class="link_class" href="<?php echo site_url('registration/log_out'); ?>">log out</a>
+            <a class="link_class" href="<?php echo site_url('albums/get_albums'); ?>">Home page</a>
         <?php }?>
     </div>

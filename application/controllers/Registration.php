@@ -53,11 +53,6 @@ class Registration extends CI_Controller {
         }
 
     }
-
-    public function home_page(){
-        $this->view_load->view('home_page_view');
-    }
-
     public function thank_you(){
         if ($this->session->userdata('status') !== FALSE){
             $this->view_load->view('thank_you');
@@ -71,13 +66,13 @@ class Registration extends CI_Controller {
 
         $this->registration_model->verify($key);
         $this->session->set_userdata('new_user', 1);
-        redirect('registration/home_page', 'refresh');
+        redirect('albums/get_albums', 'refresh');
 
     }
 
     public function log_in(){
         if($this->session->userdata('status') === '1'){
-            redirect(site_url('registration/home_page'));
+            redirect(site_url('albums/get_albums'));
         }
         $user_data = array(
             'login'            => $this->input->post('login', true),
@@ -88,7 +83,7 @@ class Registration extends CI_Controller {
                $this->registration_model->log_in($user_data);
                $status = $this->session->userdata('status');
                if($status === '1'){
-                   redirect('registration/home_page', 'refresh');
+                   redirect('albums/get_albums', 'refresh');
                } elseif ($status === '0') {
                    redirect('registration/thank_you', 'refresh');
                }

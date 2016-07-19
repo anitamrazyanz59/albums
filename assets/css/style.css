@@ -13,6 +13,54 @@ body{
     background-repeat: no-repeat;
     background: url("../../assets/img/header_background.png");
 }
+.footer_class{
+    margin-top: 50px;
+}
 .error{
     color: red;
+}
+.link_class{
+    margin-left: 10px;
+}
+.pic{
+    height: 150px;
+    width: 150px;
+}
+.albums_container {
+    margin-top: 20px;
+    background-color: white;
+    padding-bottom: 20px;
+}
+.albums_container_btn {
+    height: 150px;
+    width: 150px;
+    margin: 20px;
+}
+.albums_container_span {
+     font-size: 30pt;
+ }
+.albums_btn{
+    color: white;
+    font-size: 13px;
+    height: 150px;
+    width: 100%;
+
+}
+.span_class{
+    width: 120px;
+}
+
+.albums_class{
+    margin: 18px;
+}
+.add_pic_modal{
+    margin-top: 40px;
+
+}
+.add_pic_modal_button{
+    margin-top: 40px;
+}
+.red_class p{
+    margin-top: 15px;
+    color: Red;
 }
