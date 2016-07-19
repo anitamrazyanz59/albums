@@ -9,4 +9,7 @@ class album_model extends CI_Model
      * @return array
      */
 
+    public function add_album($added_data){
+        $this->db->insert('albums', $added_data);
+    }
 }
