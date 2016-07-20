@@ -83,18 +83,17 @@ class registration_model extends CI_Model
 
     public function log_in($user_data)
     {
-        $result = $this->db->select('user_id, first_name, pic, status')
-            ->where('password', $this->generate_pass_hash($user_data['password']))
-            ->where('login', $user_data['login'])
-            ->limit(1)
-            ->get('users');
+        $result = $this->db ->select('user_id, first_name, pic, status')
+                            ->where('password', $this->generate_pass_hash($user_data['password']))
+                            ->where('login', $user_data['login'])
+                            ->limit(1)
+                            ->get('users');
         if ($result->num_rows()) {
             $row = $result->row();
             $this->session->set_userdata('user_id', $row->user_id);
             $this->session->set_userdata('first_name', $row->first_name);
             $this->session->set_userdata('pic', $row->pic);
             $this->session->set_userdata('status', $row->status);
-
         }
 
     }
