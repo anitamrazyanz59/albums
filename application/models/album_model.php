@@ -29,8 +29,7 @@ class album_model extends CI_Model
     }
 
 
-    public function get_user_albums(){
-        $user_id = $this->session->userdata('user_id');
+    public function get_user_albums($user_id){
         $query = $this->db  ->where('user_id', $user_id )
                             ->get('albums');
         return $query->result_array();
@@ -82,7 +81,45 @@ class album_model extends CI_Model
                     ->where('user_id', $user_id)
                     ->delete('albums');
         $path = $_SERVER['DOCUMENT_ROOT'].'/uploads/user'.$user_id.'/'.$album_id ;
-        rmdir($path);
+        $this->rrmdir($path);
 
     }
+
+    public function get_all_users(){
+        $user_id = $this->session->userdata('user_id');
+        $query = $this->db  ->where('status', '1')
+                            ->where('user_id !=', $user_id)
+                            ->get('users');
+        return $query->result_array();
+    }
+
+    public function get_user_data($user_id){
+        $query = $this->db  ->select('first_name, last_name, pic')
+            ->where('user_id', $user_id)
+            ->get('users');
+        $row = $query->row();
+        $name_pic = [
+            'first_name' => $row->first_name,
+            'last_name'  => $row-> last_name,
+            'pic'        => $row->pic
+         ];
+        return $name_pic;
+    }
+
+
+    public function rrmdir($dir) {
+        if (is_dir($dir)) {
+            $objects = scandir($dir);
+            foreach ($objects as $object) {
+                if ($object != "." && $object != "..") {
+                    if (is_dir($dir."/".$object))
+                        rrmdir($dir."/".$object);
+                    else
+                        unlink($dir."/".$object);
+                }
+            }
+            rmdir($dir);
+        }
+    }
+
 }

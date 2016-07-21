@@ -23,6 +23,7 @@ body{
     margin-left: 10px;
 }
 .pic{
+    background-color: #337ab7;
     height: 150px;
     width: 150px;
 }
@@ -63,4 +64,145 @@ body{
 .red_class p{
     margin-top: 15px;
     color: Red;
+}
+.message{
+    background-color: #00CC00;
+}
+.message_textarea{
+    height: 100px;
+    width: 100%;
+}
+.white{
+    background-color: white;
+}
+.chat_class{
+    text-align: center;
+    color: #337ab7;
+    margin-bottom: 30px;
+}
+.chat_pic{
+    height: 55px;
+    width: 55px;
+    margin: 3px;
+    margin: 10px;
+}
+.one_chat div{
+
+ }
+.one_chat{
+    margin: 20px;
+}
+.one_chat:hover{
+    border: 1px solid #337ab7;
+}
+.all_chats{
+    margin: auto;
+
+}
+
+.message_span_class
+{
+    display: inline-block;
+    max-width: 300px;
+    margin-bottom: 15px;
+    text-align: center;
+    min-width: 75px;
+    background-color: #e1e1e1;
+    padding: 5px;
+    border-radius: 4px;
+    position: relative;
+    border-width: 1px;
+    border-style: solid;
+    border-color: grey;
+    margin-top: 20px
+}
+
+left
+{
+    float: left;
+}
+
+.message_span_class.left:after
+{
+    content: "";
+    display: inline-block;
+    position: absolute;
+    left: -8.5px;
+    top: 7px;
+    height: 0px;
+    width: 0px;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 8px solid #e1e1e1;
+}
+
+.message_span_class.left:before
+{
+    content: "";
+    display: inline-block;
+    position: absolute;
+    left: -9px;
+    top: 7px;
+    height: 0px;
+    width: 0px;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 8px solid black;
+}
+
+.message_span_class.right:after
+{
+    content: "";
+    display: inline-block;
+    position: absolute;
+    right: -8px;
+    top: 6px;
+    height: 0px;
+    width: 0px;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 8px solid #337ab7;
+}
+
+.message_span_class.right:before
+{
+    content: "";
+    display: inline-block;
+    position: absolute;
+    right: -9px;
+    top: 6px;
+    height: 0px;
+    width: 0px;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 8px solid black;
+}
+
+.message_span_class.right
+{
+    float: right;
+    background-color: #337ab7;
+    color: white;
+}
+
+.clear
+{
+    clear: both;
+}
+
+.to_class{
+    margin-left: 15px;
+    opacity: 0.5;
+    float: left;
+}
+.from_class{
+    margin-right: 15px;
+    opacity: 0.5;
+    float: right;
+}
+.from_div_class{
+    margin-left: -30px;
+}
+.to_div_class{
+    margin-right: -30px;
 }

@@ -15,11 +15,14 @@
     <div class="jumbotron background">
 
 
-        <?php if($this->session->userdata('user_id') == ''){?>
+        <?php if($this->session->userdata('user_id') == '' ){?>
             <a class="link_class" href="<?php echo site_url('registration/user_reg'); ?>">Sign up</a>
             <a class="link_class" href="<?php echo site_url('registration/log_in'); ?>">log in</a>
             <?php }else {?>
             <a class="link_class" href="<?php echo site_url('registration/log_out'); ?>">log out</a>
             <a class="link_class" href="<?php echo site_url('albums/get_albums'); ?>">Home page</a>
+            <a class="link_class" href="<?php echo site_url('albums/get_users'); ?>">View all users</a>
+            <a class="link_class" href="<?php echo site_url('messages/show_chats'); ?>">Show chats</a>
+
         <?php }?>
     </div>

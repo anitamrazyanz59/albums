@@ -87,6 +87,14 @@ $(document).ready(function() {
         }
     });
 
+
+    $('.send_message').click(function(e){
+       var message_value = $('.message_textarea').val();
+        if(message_value == ' '){
+            e.preventDefault();
+        }
+    });
+
         loadGallery(true, 'a.thumbnail');
 
         //This function disables buttons when needed

@@ -66,8 +66,8 @@ class registration_model extends CI_Model
             'login' => $this->input->post('login', true),
             'password' => $this->generate_pass_hash($this->input->post('password', true)),
             'verification_key' => random_string('alnum', 50)
-        ];
 
+        ];
         $this->db->insert('users', $user_data);
         $this->session->set_userdata('new_user', 0);
         return $user_data;
@@ -78,6 +78,19 @@ class registration_model extends CI_Model
         $this->db   ->set('status', '1')
                     ->where('verification_key', $key)
                     ->update('users');
+
+        $result = $this->db ->select('user_id, first_name,  status')
+                             ->where('verification_key', $key)
+                            ->limit(1)
+                            ->get('users');
+        if ($result->num_rows()) {
+            $row = $result->row();
+            $this->session->set_userdata('user_id', $row->user_id);
+            $this->session->set_userdata('first_name', $row->first_name);
+            $this->session->set_userdata('status', $row->status);
+            return true;
+        }
+        return false;
     }
 
 

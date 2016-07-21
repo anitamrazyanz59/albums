@@ -10,19 +10,7 @@ class Registration extends CI_Controller {
         $this->load->model('registration_model');
         $this->load->library('form_validation');
         $current_url = base_url(uri_string());
-        switch($this->session->userdata('status')){
-            case false:
-                if($current_url != site_url('registration/log_in') && $current_url != site_url('registration/user_reg') ){
-                    redirect(site_url('registration/log_in'));
-                }
-            break;
 
-            case '0' :
-                redirect(site_url('registration/thank_you'));
-            break;
-
-
-        }
     }
 
     public function user_reg() {
@@ -61,19 +49,17 @@ class Registration extends CI_Controller {
         }
 
     }
+    //http://albums.loc/registration/verify/bxLQX9nPh0KfwuMlOVEg674iIaSoHjWGytm1YedrsN3pTAczkC
 
     public function verify($key){
-
-        $this->registration_model->verify($key);
-        $this->session->set_userdata('new_user', 1);
-        redirect('albums/get_albums', 'refresh');
-
+        if($this->registration_model->verify($key)){
+            redirect('albums/get_albums', 'refresh');
+        }
+        show_404();
     }
 
     public function log_in(){
-        if($this->session->userdata('status') === '1'){
-            redirect(site_url('albums/get_albums'));
-        }
+
         $user_data = array(
             'login'            => $this->input->post('login', true),
             'password'         => $this->input->post('password', true),

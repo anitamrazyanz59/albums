@@ -1,10 +1,25 @@
 <div class="row">
-    <?php $user_id = $this->session->userdata('user_id'); ?>
-    <div class="col-md-2"> <img class="pic" src="<?php echo base_url('uploads/user'.$user_id.'/'.$this->session->userdata('pic').'') ?>"></div>
-    <div class="col-md-10"><h1> Hi <?php echo  $this->session->userdata('first_name')?> </h1>
+    <?php if(($name_pic['pic']) != ''){
+        $pic_src = base_url('uploads/user'. $name_pic['user_id'].'/'.$name_pic['pic'].'');
+    } else {
+        $pic_src = base_url('uploads/photo.png');
+    }
+    ?>
+    <div class="col-md-2"> <img class="pic" src="<?php echo $pic_src ?>"></div>
+    <div class="col-md-10"><h1><?php echo $name_pic['first_name'].' '.$name_pic['last_name'];  ?> </h1>
         <h1>Album <?=$album_name?></h1>
-  </div>
+    </div>
+    <?php if ($visited != '') {?>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-success " aria-label="Left Align"  data-toggle="modal" data-target="#MessageModal">
+                <span class="glyphicon glyphicon-envelope message_span"   data-toggle="tooltip" title="write message to <?=$name_pic['first_name']?>"  aria-hidden="true"></span>
+            </button>
+        </div>
+    <?php }?>
 </div>
+
+
+
 <div class="col-md-12 albums_container" >
 
 <?php if($this->session->userdata('upload_error') &&  $this->session->userdata('upload_error') != 0){
@@ -26,11 +41,13 @@
                 </div>
         <?php endforeach;
     }?>
+    <?php if($visited == ''): ?>
     <div class="col-md-2">
         <button type="button" class="btn btn-info btn-lg  albums_container_btn"  aria-label="Left Align"  data-toggle="modal" data-target="#myModal">
-            <span class="glyphicon glyphicon-plus albums_container_span" data-toggle="tooltip" title="Add new Album!" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-camera albums_container_span" data-toggle="tooltip" title="Add new picture!" aria-hidden="true"></span>
         </button>
     </div>
+    <?php endif;?>
 </div>
 
 <!--Pic modal -->
@@ -87,3 +104,29 @@
     </div>
 </div>
 <!-- Modal -->
+
+<!-- MessageModal -->
+<div class="modal fade" id="MessageModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Write message to <?=$name_pic['first_name']?></h4>
+            </div>
+            <form method="post" action="<?=site_url('messages/new_message/'.$name_pic['user_id']);?>">
+                <div class="modal-body">
+                    <textarea name="message" class="message_textarea"> </textarea>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="to" value="<?=$name_pic['user_id']?>">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" name="add_new_album" class="btn btn-default send_message" >Send</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+<!-- MessageModal -->

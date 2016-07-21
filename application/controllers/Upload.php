@@ -37,7 +37,7 @@ class Upload extends CI_Controller {
             $this->session->set_userdata('pic', $photo_name);
             $this->load->model('registration_model');
             $this->registration_model->add_photo($photo_name);
-            $this->view_load->view('home_page_view');
+            redirect(site_url('albums/get_albums'));
         }
     }
 
